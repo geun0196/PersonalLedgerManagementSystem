@@ -64,7 +64,7 @@ public class MenuManager {
 			
 			else if (num == 6)
 				break;
+			
 		}
 	}
-
 }
