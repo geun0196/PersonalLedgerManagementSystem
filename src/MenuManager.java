@@ -19,11 +19,11 @@ public class MenuManager {
 			
 			if (num == 1) {
 				System.out.printf("My Money : %d\n",money);
-				System.out.print("Select number 1(add money) or 2(minus money) : ");
+				System.out.print("Select number 1(plus money) or 2(minus money) : ");
 				
-				int AddorMinus = sc.nextInt();
+				int PlusorMinus = sc.nextInt();
 				
-				if(AddorMinus == 1) {
+				if(PlusorMinus == 1) {
 					System.out.print("Add Date(Format:mmdd) : ");
 					int AddDate = sc.nextInt();
 					System.out.print("How Much add : ");
@@ -42,22 +42,16 @@ public class MenuManager {
 			}
 			
 			else if (num == 2) {
-				System.out.print("add or minus : ");
-				String AddorMinus = sc.next();
-				System.out.print("Date(Format:mmdd) : ");
-				int date = sc.nextInt();
+				
 			}
 			
 			else if (num == 3) {
-				System.out.print("add or minus : ");
-				String AddorMinus = sc.next();
-				System.out.print("Date(Format:mmdd) : ");
-				int date = sc.nextInt();
+				
 			}
 			
 			else if (num == 4) {
-				System.out.print("add or minus : ");
-				String AddorMinus = sc.next();
+				System.out.print("plus or minus : ");
+				String PlusorMinus = sc.next();
 				System.out.print("Date(Format:mmdd) : ");
 				int date = sc.nextInt();
 			}
