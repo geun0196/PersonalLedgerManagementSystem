@@ -1,67 +1,128 @@
-import java.util.Scanner;
+import java.util.*;
+
+import Ledger.CommercialLedger;
+import Ledger.Ledger;
 
 public class LedgerManager {
-	static int money = 0;
-
-	Ledger ledger;
-	
+	ArrayList<Ledger> ledgers = new ArrayList<Ledger>();
 	Scanner sc;
+	
+	LedgerManager(){
+
+	}
+	
 	LedgerManager(Scanner sc){
 		this.sc = sc;
 	}
+
 	public void addledger() {
-		ledger = new Ledger();
-		System.out.printf("My Money : %d\n",money);
-		System.out.print("Select number 1(plus money) or 2(minus money) : ");
-
-		int PlusorMinus = sc.nextInt();
-
-		if(PlusorMinus == 1) {
-			System.out.print("Add Date(Format:mmdd) : ");
-			ledger.Date = sc.nextInt();
-			System.out.print("How Much add : ");
-			ledger.HowMuchAdd = sc.nextInt();
-			money += ledger.HowMuchAdd;			
-		}
-		else {
-			System.out.print("Use Date(Format:mmdd) : ");
-			ledger.Date = sc.nextInt();
-			System.out.print("Where Use : ");
-			ledger.WhereUse = sc.next();
-			System.out.print("How Much Use : ");
-			ledger.HowMuchUse = sc.nextInt();
-			money -= ledger.HowMuchUse;	
+		int kind = 0;
+		Ledger ledger;
+		while (kind != 1 && kind != 2) {
+			System.out.println("1. Personal Ledger");
+			System.out.println("2. Commecial Ledger");
+			System.out.print("Select num for ledger kind between 1 and 2 :");
+			kind = sc.nextInt();
+			if (kind == 1) {
+				ledger = new Ledger();
+				ledger.getUserInput(sc);
+				ledgers.add(ledger);
+				break;
+			}
+			
+			else if(kind == 2) {
+				ledger = new CommercialLedger();
+				ledger.getUserInput(sc);
+				ledgers.add(ledger);
+				break;
+			}
+			else {
+				System.out.print("Select num for ledger kind between 1 and 2 :");
+			}
 		}
 	}
 
 	public void deleteledger() {
 		System.out.print("Date(Format:mmdd) : ");
 		int date = sc.nextInt();
-		if (ledger == null) {
+		System.out.print("Howmuch : ");
+		int much = sc.nextInt();
+		int index = -1;
+
+		for(int i = 0; i < ledgers.size(); i++) {
+			if(ledgers.get(i).getDate() == date && (ledgers.get(i).getHowMuchUse() == much || ledgers.get(i).getHowMuchAdd() == much)) {
+				index = i;
+				break;
+			}			
+		}
+
+		if(index >= 0) {
+			ledgers.remove(index);
+			System.out.println("Add(or)Minus " + much + " is removed");
+		}
+		else{
 			System.out.println("the Date has not been regisered ");
 			return;
-		}
-		if(ledger.Date == date) {
-			ledger = null;
-			System.out.println("the Date is removed");
 		}
 	}
 
 	public void editledger() {
 		System.out.print("Date(Format:mmdd) : ");
 		int date = sc.nextInt();
-		if(ledger.Date == date) {
-			System.out.println("the Date to be edited is " + date);
+		System.out.print("much : ");
+		int much = sc.nextInt();
+		
+		int index = -1;
+		for(int i = 0; i < ledgers.size(); i++) {
+			if(ledgers.get(i).getDate() == date && (ledgers.get(i).getHowMuchUse() == much || ledgers.get(i).getHowMuchAdd() == much)) {
+				index = i;
+		}
+		
+		for(int j = 0; j < ledgers.size(); j++) {
+			Ledger ledger = ledgers.get(j);
+			if(index == j) {
+				int num = -1;
+
+				while (num != 4) {
+					System.out.println("**** Ledger Info Eidt Menu ****");
+					System.out.println("1.Edit Add");
+					System.out.println("2.Edit Use");
+					System.out.println("3.Edit Using location");
+					System.out.println("4.Exit");
+					System.out.print("Select one number between 1 - 4 : ");
+					num = sc.nextInt();
+
+					if (num == 1) {
+						System.out.println("How much Add : ");
+						int HowMuchAdd = sc.nextInt();
+						ledger.setHowMuchAdd(HowMuchAdd);
+						   
+					}
+
+					else if (num == 2) {
+						System.out.println("How much Use : ");
+						int HowMuchUse = sc.nextInt();
+						ledger.setHowMuchUse(HowMuchUse);
+					}
+
+					else if (num == 3) {
+						System.out.println("Using location : ");
+						String WhereUse = sc.next();
+						ledger.setWhereUse(WhereUse);
+					}
+
+					else
+						continue;
+
+					}
+				break;
+				}
+			}
 		}
 	}
-
-	public void viewledger() {
-		System.out.print("Date(Format:mmdd) : ");
-		int date = sc.nextInt();
-		if(ledger.Date == date) {
-			ledger.printinfo();
+	public void viewledgers() {
+		for(int i = 0; i < ledgers.size(); i++) {
+			ledgers.get(i).printinfo();
 		}
 	}
-
-
 }
