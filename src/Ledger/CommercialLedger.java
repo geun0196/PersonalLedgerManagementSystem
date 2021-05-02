@@ -42,7 +42,7 @@ public class CommercialLedger extends Ledger {
 			System.out.print("How Much Use(¹é¸¸) : ");
 			int HowMuchUse = sc.nextInt();
 			this.setHowMuchUse(HowMuchUse);
-			Com_money -= HowMuchAdd;
+			Com_money -= HowMuchUse;
 		}
 	}
 	
