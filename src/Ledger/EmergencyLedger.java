@@ -2,46 +2,42 @@ package Ledger;
 
 import java.util.Scanner;
 
-public class CommercialLedger extends Ledger {
-
-	public CommercialLedger(){
+public class EmergencyLedger extends Ledger {
+	
+	public EmergencyLedger(){
 	}
 	
-	public CommercialLedger(LedgerKind kind){
+	public EmergencyLedger(LedgerKind kind){
 		super(kind);
 	}
-	
+
 	public void getUserInput(Scanner sc) {
 		System.out.print("Select number 1(plus money) or 2(minus money) : ");
 
 		int PlusorMinus = sc.nextInt();
 
 		if(PlusorMinus == 1) {
-			System.out.printf("MY MONEY(백만) : %d\n", Com_money);
+			System.out.printf("MY MONEY : %d\n", Emer_money);
 			System.out.print("Add Date(Format:mmdd) : ");
 			int Date = sc.nextInt();
 			this.setDate(Date);
 
-			System.out.print("How Much add(백만) : ");
+			System.out.print("How Much add : ");
 			int HowMuchAdd = sc.nextInt();
 			this.setHowMuchAdd(HowMuchAdd);
-			Com_money += HowMuchAdd;
+			Emer_money += HowMuchAdd;
 		}
 		
 		else {
-			System.out.printf("MY MONEY(백만) : %d\n", Com_money);
+			System.out.printf("MY MONEY : %d\n", Emer_money);
 			System.out.print("Use Date(Format:mmdd) : ");
 			int Date = sc.nextInt();
 			this.setDate(Date);
 
-			System.out.print("Which partner company : ");
-			String company = sc.next();
-			this.setWhereUse(company);
-
-			System.out.print("How Much Use(백만) : ");
+			System.out.print("How Much Use : ");
 			int HowMuchUse = sc.nextInt();
 			this.setHowMuchUse(HowMuchUse);
-			Com_money -= HowMuchUse;
+			Emer_money -= HowMuchUse;
 		}
 	}
 	
@@ -59,7 +55,7 @@ public class CommercialLedger extends Ledger {
 			break;
 		default:
 		}
-		System.out.println("kind:" + lkind + " date(m/dd):" + Date + " add(백만):" + HowMuchAdd + " use(백만):" + HowMuchUse + " Partner company:" + WhereUse);
+		System.out.println("kind:" + lkind + " date(m/dd):" + Date + " add:" + HowMuchAdd + " use:" + HowMuchUse);
 	}
-
+	
 }

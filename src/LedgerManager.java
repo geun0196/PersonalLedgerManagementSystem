@@ -192,9 +192,9 @@ public class LedgerManager {
 					}
 
 					else if (num == 3) {
-						System.out.println("Using location : ");
-						String WhereUse = sc.next();
-						ledger.setWhereUse(WhereUse);
+							System.out.println("Using location : ");
+							String WhereUse = sc.next();
+							ledger.setWhereUse(WhereUse);
 					}
 
 					else
