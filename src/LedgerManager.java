@@ -3,10 +3,12 @@ import java.util.*;
 import Ledger.CommercialLedger;
 import Ledger.EmergencyLedger;
 import Ledger.Ledger;
+import Ledger.LedgerInput;
 import Ledger.LedgerKind;
+import Ledger.PersonalLedger;
 
 public class LedgerManager {
-	ArrayList<Ledger> ledgers = new ArrayList<Ledger>();
+	ArrayList<LedgerInput> ledgers = new ArrayList<LedgerInput>();
 	Scanner sc;
 	
 	LedgerManager(){
@@ -19,7 +21,7 @@ public class LedgerManager {
 
 	public void addledger() {
 		int kind = 0;
-		Ledger ledger;
+		LedgerInput ledgerInput;
 		while (kind != 1 && kind != 2 && kind != 3) {
 			System.out.println("1. Personal Ledger");
 			System.out.println("2. Commecial Ledger");
@@ -27,23 +29,23 @@ public class LedgerManager {
 			System.out.print("Select num for ledger kind between 1 and 3 :");
 			kind = sc.nextInt();
 			if (kind == 1) {
-				ledger = new Ledger(LedgerKind.Personal);
-				ledger.getUserInput(sc);
-				ledgers.add(ledger);
+				ledgerInput = new PersonalLedger(LedgerKind.Personal);
+				ledgerInput.getUserInput(sc);
+				ledgers.add(ledgerInput);
 				break;
 			}
 			
 			else if(kind == 2) {
-				ledger = new CommercialLedger(LedgerKind.Commercial);
-				ledger.getUserInput(sc);
-				ledgers.add(ledger);
+				ledgerInput = new CommercialLedger(LedgerKind.Commercial);
+				ledgerInput.getUserInput(sc);
+				ledgers.add(ledgerInput);
 				break;
 			}
 			
 			else if(kind == 3) {
-				ledger = new EmergencyLedger(LedgerKind.Emergency);
-				ledger.getUserInput(sc);
-				ledgers.add(ledger);
+				ledgerInput = new EmergencyLedger(LedgerKind.Emergency);
+				ledgerInput.getUserInput(sc);
+				ledgers.add(ledgerInput);
 				break;
 			}
 			
@@ -130,7 +132,7 @@ public class LedgerManager {
 		}
 		
 		for(int j = 0; j < ledgers.size(); j++) {
-			Ledger ledger = ledgers.get(j);
+			LedgerInput ledgerInput = ledgers.get(j);
 			if(index == j) {
 				int num = -1;
 
@@ -147,22 +149,22 @@ public class LedgerManager {
 						if(ledgers.get(j).getKind() == LedgerKind.Personal) {
 							System.out.println("How much change add : ");
 							int HowMuchAdd = sc.nextInt();
-							int current = ledger.getHowMuchAdd();
-							ledger.setHowMuchAdd(HowMuchAdd);
+							int current = ledgerInput.getHowMuchAdd();
+							ledgerInput.setHowMuchAdd(HowMuchAdd);
 							Ledger.money = Ledger.money + (HowMuchAdd-current); 
 						}
 						else if(ledgers.get(j).getKind() == LedgerKind.Commercial) {
 							System.out.println("How much change add : ");
 							int HowMuchAdd = sc.nextInt();
-							int current = ledger.getHowMuchAdd();
-							ledger.setHowMuchAdd(HowMuchAdd);
+							int current = ledgerInput.getHowMuchAdd();
+							ledgerInput.setHowMuchAdd(HowMuchAdd);
 							Ledger.Com_money = Ledger.Com_money + (HowMuchAdd-current); 
 						}
 						else if(ledgers.get(j).getKind() == LedgerKind.Emergency) {
 							System.out.println("How much change add : ");
 							int HowMuchAdd = sc.nextInt();
-							int current = ledger.getHowMuchAdd();
-							ledger.setHowMuchAdd(HowMuchAdd);
+							int current = ledgerInput.getHowMuchAdd();
+							ledgerInput.setHowMuchAdd(HowMuchAdd);
 							Ledger.Emer_money = Ledger.Emer_money + (HowMuchAdd-current); 
 						}
 					}
@@ -171,22 +173,22 @@ public class LedgerManager {
 						if(ledgers.get(j).getKind() == LedgerKind.Personal) {
 							System.out.println("How much change use : ");
 							int HowMuchUse = sc.nextInt();
-							int current = ledger.getHowMuchUse();
-							ledger.setHowMuchUse(HowMuchUse);
+							int current = ledgerInput.getHowMuchUse();
+							ledgerInput.setHowMuchUse(HowMuchUse);
 							Ledger.money = Ledger.money + (current - HowMuchUse);
 						}
 						else if(ledgers.get(j).getKind() == LedgerKind.Commercial) {
 							System.out.println("How much change use : ");
 							int HowMuchUse = sc.nextInt();
-							int current = ledger.getHowMuchUse();
-							ledger.setHowMuchUse(HowMuchUse);
+							int current = ledgerInput.getHowMuchUse();
+							ledgerInput.setHowMuchUse(HowMuchUse);
 							Ledger.Com_money = Ledger.Com_money + (current - HowMuchUse);
 						}
 						else if(ledgers.get(j).getKind() == LedgerKind.Emergency) {
 							System.out.println("How much change use : ");
 							int HowMuchUse = sc.nextInt();
-							int current = ledger.getHowMuchUse();
-							ledger.setHowMuchUse(HowMuchUse);
+							int current = ledgerInput.getHowMuchUse();
+							ledgerInput.setHowMuchUse(HowMuchUse);
 							Ledger.Emer_money = Ledger.Emer_money + (current - HowMuchUse);
 						}
 					}
@@ -194,7 +196,7 @@ public class LedgerManager {
 					else if (num == 3) {
 							System.out.println("Using location : ");
 							String WhereUse = sc.next();
-							ledger.setWhereUse(WhereUse);
+							ledgerInput.setWhereUse(WhereUse);
 					}
 
 					else

@@ -2,7 +2,7 @@ package Ledger;
 
 import java.util.Scanner;
 
-public class EmergencyLedger extends Ledger {
+public class EmergencyLedger extends Ledger implements LedgerInput {
 	
 	public EmergencyLedger(){
 	}
