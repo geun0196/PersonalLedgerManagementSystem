@@ -34,6 +34,7 @@ public class PersonalLedger extends Ledger implements LedgerInput{
 			int Date = sc.nextInt();
 			this.setDate(Date);
 			
+			
 			System.out.print("Where Use : ");
 			String WhereUse = sc.next();
 			this.setWhereUse(WhereUse);
