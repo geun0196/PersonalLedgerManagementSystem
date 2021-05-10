@@ -1,3 +1,3 @@
-# PersonalLedgerManagementSystem
+# LedgerManagementSystem
 course project for oop
 student : 정승진
