@@ -95,51 +95,29 @@ public abstract class Ledger implements LedgerInput {
 		int HowMuchAdd = -1, HowMuchUse = -1;
 		while(HowMuchAdd < 0 || HowMuchUse < 0) {
 			try {
-				if(this.getKind() == LedgerKind.Personal) {
 					if(PlusorMinus == 1) {
 						System.out.print("How Much add : ");
 						HowMuchAdd = sc.nextInt();
 						this.setHowMuchAdd(HowMuchAdd);
-						money += HowMuchAdd;
+						if(this.getKind() == LedgerKind.Personal)
+							money += HowMuchAdd;
+						else if(this.getKind() == LedgerKind.Commercial)
+							Com_money += HowMuchAdd;
+						else
+							Emer_money += HowMuchAdd;
 					}
 					else {
 						System.out.print("How Much Use : ");
 						HowMuchUse = sc.nextInt();
 						this.setHowMuchUse(HowMuchUse);
-						money -= HowMuchUse;
+						if(this.getKind() == LedgerKind.Personal)
+							money -= HowMuchUse;
+						else if(this.getKind() == LedgerKind.Personal)
+							Com_money -= HowMuchUse;
+						else
+							Emer_money -= HowMuchUse;
 					}
 					break;
-				}
-				else if(this.getKind() == LedgerKind.Commercial) {
-					if(PlusorMinus == 1) {
-						System.out.print("How Much add(¸¸) : ");
-						HowMuchAdd = sc.nextInt();
-						this.setHowMuchAdd(HowMuchAdd);
-						Com_money += HowMuchAdd;
-					}
-					else {
-						System.out.print("How Much Use(¸¸) : ");
-						HowMuchUse = sc.nextInt();
-						this.setHowMuchUse(HowMuchUse);
-						Com_money -= HowMuchUse;
-					}
-					break;
-				}
-				else {
-					if(PlusorMinus == 1) {
-						System.out.print("How Much add : ");
-						HowMuchAdd = sc.nextInt();
-						this.setHowMuchAdd(HowMuchAdd);
-						Emer_money += HowMuchAdd;
-					}
-					else {
-						System.out.print("How Much Use : ");
-						HowMuchUse = sc.nextInt();
-						this.setHowMuchUse(HowMuchUse);
-						Emer_money -= HowMuchUse;
-					}
-					break;
-				}
 			}
 			catch(InputMismatchException e) {
 				System.out.println("Please input Money!");

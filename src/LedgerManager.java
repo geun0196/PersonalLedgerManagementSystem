@@ -1,11 +1,6 @@
 import java.util.*;
 
-import Ledger.CommercialLedger;
-import Ledger.EmergencyLedger;
-import Ledger.Ledger;
-import Ledger.LedgerInput;
-import Ledger.LedgerKind;
-import Ledger.PersonalLedger;
+import Ledger.*;
 
 public class LedgerManager {
 	ArrayList<LedgerInput> ledgers = new ArrayList<LedgerInput>();
