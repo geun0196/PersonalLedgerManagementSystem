@@ -88,6 +88,7 @@ public class LedgerManager {
 					Ledger.Com_money = Ledger.Com_money + much;
 				else
 					Ledger.Emer_money = Ledger.Emer_money + much;
+				
 				ledgers.remove(index);
 				System.out.println("Use " + much + " is removed");
 			}	
