@@ -56,15 +56,14 @@ public class LedgerManager {
 	}
 
 	public void deleteledger() {
-		System.out.print("Kind(Personal/Commercial/Emergency) : ");
-		String kind = sc.next();
-		System.out.print("Date(Format:mm/dd) : ");
 		sc.nextLine();
+		System.out.print("Kind(Personal/Commercial/Emergency) : ");
+		String kind = sc.nextLine();
+		System.out.print("Date(Format:mm/dd) : ");
 		String date = sc.nextLine();
 		System.out.print("much : ");
 		int much = sc.nextInt();
 		int index = findindex(kind, date, much);
-		
 		removefromLedgers(index, much);
 	}
 	
@@ -82,26 +81,26 @@ public class LedgerManager {
 	
 	public void removefromLedgers(int index, int much) {
 		if(index >= 0) {
-			if(ledgers.get(index).getHowMuchUse() == much) {
-				ledgers.remove(index);
-				System.out.println("Minus " + much + " is removed");
+			if(ledgers.get(index).getHowMuchUse() == much) {		
 				if(ledgers.get(index).getKind() == LedgerKind.Personal) 
 					Ledger.money = Ledger.money + much;
 				else if(ledgers.get(index).getKind() == LedgerKind.Commercial)
 					Ledger.Com_money = Ledger.Com_money + much;
 				else
 					Ledger.Emer_money = Ledger.Emer_money + much;
+				ledgers.remove(index);
+				System.out.println("Use " + much + " is removed");
 			}	
 			else{
-				ledgers.remove(index);
-				System.out.println("Add " + much + " is removed");
-
 				if(ledgers.get(index).getKind() == LedgerKind.Personal) 
 					Ledger.money = Ledger.money - much; 
 				else if(ledgers.get(index).getKind() == LedgerKind.Commercial)
 					Ledger.Com_money = Ledger.Com_money - much; 
 				else
 					Ledger.Emer_money = Ledger.Emer_money - much;
+				
+				ledgers.remove(index);
+				System.out.println("Add " + much + " is removed");
 			}
 		}
 

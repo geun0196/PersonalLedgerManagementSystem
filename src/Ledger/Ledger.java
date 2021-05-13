@@ -191,5 +191,4 @@ public abstract class Ledger implements LedgerInput {
 		return lkind;
 	}
 
-
 }
