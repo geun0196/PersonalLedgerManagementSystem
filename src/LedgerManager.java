@@ -58,8 +58,9 @@ public class LedgerManager {
 	public void deleteledger() {
 		System.out.print("Kind(Personal/Commercial/Emergency) : ");
 		String kind = sc.next();
-		System.out.print("Date(Format:mmdd) : ");
-		int date = sc.nextInt();
+		System.out.print("Date(Format:mm/dd) : ");
+		sc.nextLine();
+		String date = sc.nextLine();
 		System.out.print("much : ");
 		int much = sc.nextInt();
 		int index = findindex(kind, date, much);
@@ -67,11 +68,11 @@ public class LedgerManager {
 		removefromLedgers(index, much);
 	}
 	
-	public int findindex(String kind, int date, int much) {
+	public int findindex(String kind, String date, int much) {
 		int index = -1;
 
 		for(int i = 0; i < ledgers.size(); i++) {
-			if(ledgers.get(i).getDate() == date && ledgers.get(i).getKind().name().equals(kind) && (ledgers.get(i).getHowMuchUse() == much || ledgers.get(i).getHowMuchAdd() == much)) {
+			if(ledgers.get(i).getDate().equals(date)&& ledgers.get(i).getKind().name().equals(kind) && (ledgers.get(i).getHowMuchUse() == much || ledgers.get(i).getHowMuchAdd() == much)) {
 				index = i;
 				break;
 			}			
@@ -113,8 +114,9 @@ public class LedgerManager {
 	public void editledger() {
 		System.out.print("Kind(Personal/Commercial/Emergency) : ");
 		String kind = sc.next();
-		System.out.print("Date(Format:mmdd) : ");
-		int date = sc.nextInt();
+		sc.nextLine();
+		System.out.print("Date(Format:mm/dd) : ");
+		String date = sc.nextLine();
 		System.out.print("much : ");
 		int much = sc.nextInt();
 		

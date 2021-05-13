@@ -2,11 +2,13 @@ package Ledger;
 
 import java.util.Scanner;
 
+import Exceptions.DateformatException;
+
 public interface LedgerInput {
 	
 	public void getUserInput(Scanner sc);
 	
-	public int getDate();
+	public String getDate();
 	public int getHowMuchAdd();
 	public int getHowMuchUse();
 	public LedgerKind getKind();
@@ -14,7 +16,7 @@ public interface LedgerInput {
 	public void setHowMuchAdd(int howMuchAdd);
 	public void setHowMuchUse(int howMuchUse);
 	public void setWhereUse(String whereUse);
-	public void setDate(int Date);
+	public void setDate(String date) throws DateformatException;
 
 	public void printinfo();
 	
@@ -25,4 +27,5 @@ public interface LedgerInput {
 	public void setHowMuchUse(Scanner sc, int index );
 	public void setHowMuchAdd(Scanner sc, int index);
 	public void setWhereUse(Scanner sc);
+	
 }
