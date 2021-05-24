@@ -1,11 +1,17 @@
 package Ledger;
 
+import java.io.Serializable;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
 import Exceptions.DateformatException;
 
-public abstract class Ledger implements LedgerInput {
+public abstract class Ledger implements LedgerInput, Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1538550531226496027L;
+	
 	protected LedgerKind kind = LedgerKind.Personal;
 	protected String Date;
 	protected String WhereUse;
@@ -94,12 +100,13 @@ public abstract class Ledger implements LedgerInput {
 			String WhereUse = sc.nextLine();
 			this.setWhereUse(WhereUse);
 		}
-		else if(PlusorMinus == 2 && this.getKind() == LedgerKind.Commercial) {
+		else if(PlusorMinus == 2 && this.getKind() == LedgerKind.Commercial)	{
 			sc.nextLine();
 			System.out.print("Partner Company : ");
 			String WhereUse = sc.nextLine();
 			this.setWhereUse(WhereUse);
 		}
+		
 	}
 
 	public void setmoney(int PlusorMinus, Scanner sc) {

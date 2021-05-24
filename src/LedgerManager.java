@@ -1,20 +1,41 @@
-import java.util.*;
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.InputMismatchException;
+import java.util.Scanner;
 
-import Ledger.*;
+import Ledger.CommercialLedger;
+import Ledger.EmergencyLedger;
+import Ledger.Ledger;
+import Ledger.LedgerInput;
+import Ledger.LedgerKind;
+import Ledger.PersonalLedger;
 
-public class LedgerManager {
-	ArrayList<LedgerInput> ledgers = new ArrayList<LedgerInput>();
-	Scanner sc;
-	
-	LedgerManager(){
-
+public class LedgerManager implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -4672223611087433373L;
+		
+	int temp_per, temp_com, temp_emer;
+	public void putset() {
+		temp_per = Ledger.money;
+		temp_com = Ledger.Com_money;
+		temp_emer = Ledger.Emer_money;
 	}
+	public void getset() {
+		Ledger.money = temp_per;
+		Ledger.Com_money = temp_com;
+		Ledger.Emer_money = temp_emer;
+	}
+	
+	ArrayList<LedgerInput> ledgers = new ArrayList<LedgerInput>();
+	transient Scanner sc;
 	
 	LedgerManager(Scanner sc){
 		this.sc = sc;
 	}
 
-	public void addledger() {
+	public void addledger(Scanner sc) {
 		int kind = 0;
 		LedgerInput ledgerInput;
 		while (kind != 1 && kind != 2 && kind != 3) {
@@ -55,7 +76,7 @@ public class LedgerManager {
 		}
 	}
 
-	public void deleteledger() {
+	public void deleteledger(Scanner sc) {
 		sc.nextLine();
 		System.out.print("Kind(Personal/Commercial/Emergency) : ");
 		String kind = sc.nextLine();
@@ -111,7 +132,7 @@ public class LedgerManager {
 		}
 	}
 	
-	public void editledger() {
+	public void editledger(Scanner sc) {
 		System.out.print("Kind(Personal/Commercial/Emergency) : ");
 		String kind = sc.next();
 		sc.nextLine();

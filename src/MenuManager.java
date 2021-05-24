@@ -1,13 +1,28 @@
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
+import Ledger.Ledger;
+import Log.EventLogger;
+
 public class MenuManager {
-	
+	static EventLogger logger = new EventLogger("log.txt");
 	public static void main(String[] args) {
-		Scanner sc = new Scanner(System.in);
-		LedgerManager ledgerManager = new LedgerManager(sc);
 		
+		Scanner sc = new Scanner(System.in);
+		LedgerManager ledgerManager = getObject("ledgermanager.ser");
+		if(ledgerManager == null) {
+			ledgerManager = new LedgerManager(sc);
+		}
+		ledgerManager.getset();
 		selectMenu(sc, ledgerManager);
+		ledgerManager.putset();
+		putObject(ledgerManager, "ledgermanager.ser");
 	}
 	
 	public static void selectMenu(Scanner sc, LedgerManager ledgerManager) {
@@ -19,16 +34,20 @@ public class MenuManager {
 				num = sc.nextInt();
 				switch(num) {
 				case 1:
-					ledgerManager.addledger();
+					ledgerManager.addledger(sc);
+					logger.log("add a Ledger");
 					break;
 				case 2:
-					ledgerManager.deleteledger();
+					ledgerManager.deleteledger(sc);
+					logger.log("delete a Ledger");
 					break;
 				case 3:
-					ledgerManager.editledger();
+					ledgerManager.editledger(sc);
+					logger.log("edit a Ledger");
 					break;
 				case 4:
 					ledgerManager.viewledgers();
+					logger.log("view Ledgers");
 					break;
 				default:
 					continue;
@@ -51,5 +70,41 @@ public class MenuManager {
 		System.out.println("4.View Ledgers");
 		System.out.println("5.Exit");
 		System.out.print("Select one number between 1-5 : ");
+	}
+	
+	public static LedgerManager getObject(String filename) {
+		LedgerManager ledgerManager = null; 
+		try {
+			FileInputStream file = new FileInputStream(filename);
+			ObjectInputStream in = new ObjectInputStream(file);
+			
+			ledgerManager = (LedgerManager) in.readObject();
+			
+			in.close();
+			file.close();
+		} catch (FileNotFoundException e) {
+			return ledgerManager;
+		} catch (IOException e) {
+			e.printStackTrace();
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		}
+		return ledgerManager;
+	}
+	
+	public static void putObject(LedgerManager ledgerManager, String filename) {
+		try {
+			FileOutputStream file = new FileOutputStream(filename);
+			ObjectOutputStream out = new ObjectOutputStream(file);
+			
+			out.writeObject(ledgerManager);
+			
+			out.close();
+			file.close();
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 }

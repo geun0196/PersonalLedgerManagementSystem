@@ -23,7 +23,7 @@ public class EmergencyLedger extends Ledger{
 	
 	public void printinfo() {
 		String lkind = getLedgerkind();
-		System.out.println("kind:" + lkind + " date(m/dd):" + Date + " add:" + HowMuchAdd + " use:" + HowMuchUse + " location:" + WhereUse);
+		System.out.println("kind:" + lkind + " date(m/dd):" + Date + " add:" + HowMuchAdd + " use:" + HowMuchUse);
 	}	
 	
 }
