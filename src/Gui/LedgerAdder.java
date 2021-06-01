@@ -2,9 +2,13 @@ package Gui;
 
 import javax.swing.*;
 
-public class LedgerAdder extends JFrame{
+public class LedgerAdder extends JPanel{
 
-	public LedgerAdder() {
+	WindowFrame frame;
+	
+	public LedgerAdder(WindowFrame frame) {
+		this.frame = frame;
+		
 		JPanel panel = new JPanel();
 		panel.setLayout(new SpringLayout());
 		
@@ -40,9 +44,7 @@ public class LedgerAdder extends JFrame{
 		
 		SpringUtilities.makeCompactGrid(panel, 5, 2, 6, 6, 6, 6);
 		
-		this.setSize(300, 300);
-		this.setDefaultCloseOperation(this.EXIT_ON_CLOSE);
-		this.setContentPane(panel);
+		this.add(panel);
 		this.setVisible(true);
 	}
 }

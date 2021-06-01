@@ -1,3 +1,4 @@
+package Manager;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -7,6 +8,7 @@ import java.io.ObjectOutputStream;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
+import Gui.WindowFrame;
 import Ledger.Ledger;
 import Log.EventLogger;
 
@@ -20,6 +22,8 @@ public class MenuManager {
 			ledgerManager = new LedgerManager(sc);
 		}
 		ledgerManager.getset();
+		WindowFrame frame = new WindowFrame(ledgerManager);
+		
 		selectMenu(sc, ledgerManager);
 		ledgerManager.putset();
 		putObject(ledgerManager, "ledgermanager.ser");

@@ -1,14 +1,19 @@
 package Gui;
 
 import javax.swing.*;
+
+import Listeners.*;
+
 import java.awt.*;
 
-public class MenuSelection extends JFrame{
+public class MenuSelection extends JPanel{
 	
-	public MenuSelection() {
+	WindowFrame frame;
+	
+	public MenuSelection(WindowFrame frame) {
+		this.frame = frame;
 		
-		this.setDefaultCloseOperation(this.EXIT_ON_CLOSE);
-		this.setSize(290,300);
+		this.setLayout(new BorderLayout());
 		
 		JPanel panel1 = new JPanel();
 		JPanel panel2 = new JPanel();
@@ -19,6 +24,9 @@ public class MenuSelection extends JFrame{
 		JButton edit = new JButton("Edit Ledger");
 		JButton view = new JButton("View Ledgers");
 		JButton exit = new JButton("Exit");
+		
+		add.addActionListener(new ButtonAddListener(frame));
+		view.addActionListener(new ButtonViewListener(frame));
 		
 		panel1.add(label);
 		panel2.add(add);

@@ -11,6 +11,7 @@ public interface LedgerInput {
 	public String getDate();
 	public int getHowMuchAdd();
 	public int getHowMuchUse();
+	public String getWhereUse();
 	public LedgerKind getKind();
 	
 	public void setHowMuchAdd(int howMuchAdd);

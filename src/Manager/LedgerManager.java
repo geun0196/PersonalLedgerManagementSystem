@@ -1,3 +1,4 @@
+package Manager;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.InputMismatchException;
@@ -173,6 +174,14 @@ public class LedgerManager implements Serializable{
 		for(int i = 0; i < ledgers.size(); i++) {
 			ledgers.get(i).printinfo();
 		}
+	}
+	
+	public int size() {
+		return ledgers.size();
+	}
+	
+	public LedgerInput get(int index) {
+		return ledgers.get(index);
 	}
 	
 	public void Addmenu() {
