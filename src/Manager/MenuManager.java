@@ -21,9 +21,9 @@ public class MenuManager {
 		if(ledgerManager == null) {
 			ledgerManager = new LedgerManager(sc);
 		}
-		ledgerManager.getset();
-		WindowFrame frame = new WindowFrame(ledgerManager);
 		
+		WindowFrame frame = new WindowFrame(ledgerManager);
+		ledgerManager.getset();
 		selectMenu(sc, ledgerManager);
 		ledgerManager.putset();
 		putObject(ledgerManager, "ledgermanager.ser");
