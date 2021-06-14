@@ -1,34 +1,46 @@
 package Gui;
 
 import javax.swing.*;
+import Ledger.*;
+import Listeners.LedgerAdderCancelListener;
+import Listeners.LedgerAdderListener;
+import Manager.LedgerManager;
 
 public class LedgerAdder extends JPanel{
 
 	WindowFrame frame;
+	LedgerManager ledgerManager;
 	
-	public LedgerAdder(WindowFrame frame) {
+	public LedgerAdder(WindowFrame frame, LedgerManager ledgerManager) {
 		this.frame = frame;
+		this.ledgerManager = ledgerManager;
 		
 		JPanel panel = new JPanel();
 		panel.setLayout(new SpringLayout());
 		
 		JLabel labelMymoney = new JLabel("My money : ", JLabel.TRAILING);
 		JLabel labelMymoney2 = new JLabel();
-		//labelMymoney.setLabelFor(labelMymoney2);
+		labelMymoney2.setText(Integer.toString(Ledger.money));
 		panel.add(labelMymoney);
 		panel.add(labelMymoney2);
 		
-		JLabel labelID = new JLabel("Date : ", JLabel.TRAILING);
-		JTextField fieldID = new JTextField(10);
-		labelID.setLabelFor(fieldID);
-		panel.add(labelID);
-		panel.add(fieldID);
+		JLabel labelDate = new JLabel("Date : ", JLabel.TRAILING);
+		JTextField fieldDate = new JTextField(10);
+		labelDate.setLabelFor(fieldDate);
+		panel.add(labelDate);
+		panel.add(fieldDate);
 		
-		JLabel labelHowMuch = new JLabel("How Much : ", JLabel.TRAILING);
-		JTextField fieldHowMuch = new JTextField(10);
-		labelHowMuch.setLabelFor(fieldHowMuch);
-		panel.add(labelHowMuch);
-		panel.add(fieldHowMuch);
+		JLabel labelHowMuchAdd = new JLabel("How Much Add: ", JLabel.TRAILING);
+		JTextField fieldHowMuchAdd = new JTextField(10);
+		labelHowMuchAdd.setLabelFor(fieldHowMuchAdd);
+		panel.add(labelHowMuchAdd);
+		panel.add(fieldHowMuchAdd);
+		
+		JLabel labelHowMuchUse = new JLabel("How Much Use: ", JLabel.TRAILING);
+		JTextField fieldHowMuchUse = new JTextField(10);
+		labelHowMuchUse.setLabelFor(fieldHowMuchUse);
+		panel.add(labelHowMuchUse);
+		panel.add(fieldHowMuchUse);
 		
 		JLabel labelWhere = new JLabel("Where : ", JLabel.TRAILING);
 		JTextField fieldWhere = new JTextField(10);
@@ -37,12 +49,15 @@ public class LedgerAdder extends JPanel{
 		panel.add(fieldWhere);
 		
 		JButton save = new JButton("Save");
-		JButton close = new JButton("Close");
+		save.addActionListener(new LedgerAdderListener(fieldDate,fieldHowMuchAdd, fieldHowMuchUse,fieldWhere, ledgerManager));
+		
+		JButton cancel = new JButton("Cancel");
+		cancel.addActionListener(new LedgerAdderCancelListener(frame));
 		
 		panel.add(save);
-		panel.add(close);
+		panel.add(cancel);
 		
-		SpringUtilities.makeCompactGrid(panel, 5, 2, 6, 6, 6, 6);
+		SpringUtilities.makeCompactGrid(panel, 6, 2, 6, 6, 6, 6);
 		
 		this.add(panel);
 	}

@@ -10,14 +10,14 @@ public class WindowFrame extends JFrame{
 	MenuSelection menuselection;
 	LedgerAdder adder;
 	LedgerViewer viewer;
-	
+
 	public WindowFrame(LedgerManager ledgerManager) {
 		this.setSize(500, 300);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		this.ledgerManager = ledgerManager;
 		menuselection = new MenuSelection(this);
-		adder = new LedgerAdder(this);
+		adder = new LedgerAdder(this, this.ledgerManager);
 		viewer = new LedgerViewer(this, this.ledgerManager);
 		
 		this.setupPanel(menuselection);
@@ -55,5 +55,5 @@ public class WindowFrame extends JFrame{
 	public void setViewer(LedgerViewer viewer) {
 		this.viewer = viewer;
 	}
-
+	
 }

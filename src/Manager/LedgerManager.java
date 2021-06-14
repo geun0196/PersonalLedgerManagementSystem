@@ -35,7 +35,17 @@ public class LedgerManager implements Serializable{
 	LedgerManager(Scanner sc){
 		this.sc = sc;
 	}
-
+	
+	public void addledger(String date, String much, String where) {
+		LedgerInput ledgerInput = new PersonalLedger(LedgerKind.Personal);
+		ledgerInput.getUserInput(sc);
+		ledgers.add(ledgerInput);
+	}
+	
+	public void addledger(LedgerInput ledgerInput) {
+		ledgers.add(ledgerInput);
+	}
+	
 	public void addledger(Scanner sc) {
 		int kind = 0;
 		LedgerInput ledgerInput;
